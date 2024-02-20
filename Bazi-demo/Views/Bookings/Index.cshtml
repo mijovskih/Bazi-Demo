@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Bazi_demo.Models.Booking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountAdvance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountLeft)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberInstallments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="@(item.Status.Equals("Declined") ? "red" : "green");">
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountAdvance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountLeft)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberInstallments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.EMBG)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="Approve" asp-route-id="@item.Id">Approve</a> |
+                <a asp-action="Decline" asp-route-id="@item.Id">Decline</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
